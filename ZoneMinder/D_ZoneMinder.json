@@ -1,0 +1,260 @@
+{
+   "flashicon": "icons/iconVSwitch.png",
+   "halloIconsDir": "pics/hallo",
+   "state_icons": [
+      "iconVSwitch_0.png",
+      "iconVSwitch_100.png"
+   ],
+   "x": "2",
+   "y": "4",
+   "inScene": "1",
+   "DisplayStatus": {
+      "Service": "urn:upnp-org:serviceId:ZoneMinder",
+      "Variable": "status",
+      "MinValue": "0",
+      "MaxValue": "1"
+   },
+   "doc_url": {
+      "doc_language": 1,
+      "doc_manual": 1,
+      "doc_version": 1,
+      "doc_platform": 0,
+      "doc_page": "zone_minder"
+   },
+   "ToggleButton": 1,
+   "Tabs": [
+      {
+         "Label": {
+            "lang_tag": "tabname_control",
+            "text": "Control"
+         },
+         "Position": "0",
+         "TabType": "flash",
+         "ControlGroup": [
+            {
+               "id": "1",
+               "isSingle": "1",
+               "scenegroup": "1"
+            },
+            {
+               "id": "2",
+               "isSingle": "1",
+               "scenegroup": "1"
+            },
+            {
+               "id": "3",
+               "isSingle": "1",
+               "scenegroup": "2"
+            },
+            {
+               "id": "4",
+               "isSingle": "1",
+               "scenegroup": "3"
+            }
+         ],
+         "SceneGroup": [
+            {
+               "id": "1",
+               "top": "2",
+               "left": "0",
+               "x": "2",
+               "y": "1"
+            },
+            {
+               "id": "2",
+               "top": "-0.9",
+               "left": "-1.13",
+               "x": "2",
+               "y": "1"
+            },
+            {
+               "id": "3",
+               "top": "-0.4",
+               "left": "-1.13",
+               "x": "2",
+               "y": "1"
+            }
+         ],
+         "Control": [
+            {
+               "ControlGroup": "5",
+               "ControlType": "label",
+               "top": "0",
+               "left": "0",
+               "Label": {
+                  "lang_tag": "url_prefix",
+                  "text": "url prefix (ex : http://localhost:12345/zm/) : "
+               },
+               "Display": {
+                  "Top": 30,
+                  "Left": 50,
+                  "Width": 75,
+                  "Height": 20
+               }
+            },
+            {
+               "ControlGroup": "3",
+               "ControlType": "variable",
+               "top": "1",
+               "left": "0",
+               "Display": {
+                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Variable": "url_prefix",
+                  "Top": 30,
+                  "Left": 145,
+                  "Width": 75,
+                  "Height": 20
+               }
+            },
+            {
+               "ControlGroup": "2",
+               "ControlType": "button",
+               "top": "0",
+               "left": "1",
+               "Label": {
+                  "lang_tag": "cmd_on",
+                  "text": "On"
+               },
+               "Display": {
+                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Variable": "status",
+                  "Value": "1",
+                  "Top": 60,
+                  "Left": 145,
+                  "Width": 75,
+                  "Height": 20
+               },
+               "Command": {
+                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Action": "start",
+                  "Parameters": [
+                  ]
+               }
+            },
+            {
+               "ControlGroup": "1",
+               "ControlType": "button",
+               "top": "0",
+               "left": "0",
+               "Label": {
+                  "lang_tag": "cmd_off",
+                  "text": "Off"
+               },
+               "Display": {
+                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Variable": "status",
+                  "Value": "0",
+                  "Top": 60,
+                  "Left": 50,
+                  "Width": 75,
+                  "Height": 20
+               },
+               "Command": {
+                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Action": "stop",
+                  "Parameters": [
+                  ]
+               }
+            }
+         ]
+      },
+      {
+         "Label": {
+            "lang_tag": "advanced",
+            "text": "Advanced"
+         },
+         "Position": "2",
+         "TabType": "javascript",
+         "ScriptName": "shared.js",
+         "Function": "advanced_device"
+      },
+      {
+         "Label": {
+            "lang_tag": "logs",
+            "text": "Logs"
+         },
+         "Position": "4",
+         "TabType": "javascript",
+         "ScriptName": "shared.js",
+         "Function": "device_logs"
+      },
+      {
+         "Label": {
+            "lang_tag": "notifications",
+            "text": "Notifications"
+         },
+         "Position": "5",
+         "TabType": "javascript",
+         "ScriptName": "shared.js",
+         "Function": "device_notifications"
+      }
+   ],
+   "sceneList": {
+      "group_1": {
+         "cmd_1": {
+            "label": "ON",
+            "serviceId": "urn:upnp-org:serviceId:ZoneMinder",
+            "action": "start",
+            "arguments": {},
+            "display": {
+               "service": "urn:upnp-org:serviceId:ZoneMinder",
+               "variable": "status",
+               "value": "1"
+            }
+         },
+         "cmd_2": {
+            "label": "OFF",
+            "serviceId": "urn:upnp-org:serviceId:ZoneMinder",
+            "action": "stop",
+            "arguments": {},
+            "display": {
+               "service": "urn:upnp-org:serviceId:ZoneMinder",
+               "variable": "Status",
+               "value": "0"
+            }
+         }
+      }
+   },
+   "eventList2": [
+      {
+         "id": 1,
+         "label": {
+            "lang_tag": "a_device_is_turned_on_off",
+            "text": "A device is turned on or off"
+         },
+         "serviceId": "urn:upnp-org:serviceId:ZoneMinder",
+         "argumentList": [
+            {
+               "id": 1,
+               "dataType": "boolean",
+               "defaultValue": "1",
+               "allowedValueList": [
+                  {
+                     "Off": "0",
+                     "HumanFriendlyText": {
+                        "lang_tag": "hft_device_turned_off",
+                        "text": "_DEVICE_NAME_ is turned off"
+                     }
+                  },
+                  {
+                     "On": "1",
+                     "HumanFriendlyText": {
+                        "lang_tag": "hft_device_turned_on",
+                        "text": "_DEVICE_NAME_ is turned on"
+                     }
+                  }
+               ],
+               "name": "status",
+               "comparison": "=",
+               "prefix": {
+                  "lang_tag": "which_mode",
+                  "text": "Which mode"
+               },
+               "suffix": {}
+            }
+         ]
+      }
+   ],
+   "DeviceType": "urn:schemas-upnp-org:device:ZoneMinder:1",
+   "device_type": "urn:schemas-upnp-org:device:ZoneMinder:1"
+}

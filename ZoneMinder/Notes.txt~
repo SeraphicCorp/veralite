@@ -1,0 +1,20 @@
+HOW TO USE
+Add the json and xml files to your luup files.
+Create a device only filling Upnp Device Filename with D_ZoneMinder.xml
+Configure the device and in Advanced tab add a variable :
+    New service : urn:upnp-org:serviceId:ZoneMinder
+    New variable : url_prefix
+    New value : http://<host>[:<port>]/<path-to-zm>/
+
+TODO
+Add a setter for URL prefix in widget
+Need to enhance widget
+Retrieve real status from ZoneMinder
+Add password authentication
+
+NOTES
+Start ZoneMinder :
+http://[ip:port]/zm/index.php?view=none&action=state&runState=start
+
+Stop ZoneMinder :
+http://[ip:port]/zm/index.php?view=none&action=state&runState=stop

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<implementation>
+    <functions>
+        function initialize(lul_device)
+            set_url_prefix(lul_device, "http://zoneminder.seraphiccorp.com/zm/")
+        end
+        function get_status()
+            return luup.variable_get("urn:upnp-org:serviceId:ZoneMinder","url_prefix", lul_device)
+        end
+            function get_url_prefix(lul_device)
+            return luup.variable_get("urn:upnp-org:serviceId:ZoneMinder","url_prefix", lul_device)
+        end
+            function set_url_prefix(lul_device, value)
+            luup.variable_set("urn:upnp-org:serviceId:ZoneMinder", "url_prefix", value, lul_device)
+        end
+        function start(lul_device)
+            local url_prefix = get_url_prefix()
+            luup.variable_set("urn:upnp-org:serviceId:ZoneMinder","status",1,lul_device)
+            luup.inet.wget(url_prefix .. "index.php?view=none&amp;action=state&amp;runState=start", 60)
+        end
+        function stop(lul_device)
+            local url_prefix = get_url_prefix()
+            luup.variable_set("urn:upnp-org:serviceId:ZoneMinder","status",0,lul_device)
+            luup.inet.wget(url_prefix .. "index.php?view=none&amp;action=state&amp;runState=stop", 60)
+        end
+    </functions>
+    <startup>initialize</startup>
+    <actionList>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:ZoneMinder</serviceId>
+            <name>get_url_prefix</name>
+            <run>
+                get_url_prefix(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:ZoneMinder</serviceId>
+            <name>set_url_prefix</name>
+            <run>
+                set_url_prefix(lul_device, lul_settings.url_prefix)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:ZoneMinder</serviceId>
+            <name>get_status</name>
+            <run>
+                get_status(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:ZoneMinder</serviceId>
+            <name>start</name>
+            <run>
+                start(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:ZoneMinder</serviceId>
+            <name>stop</name>
+            <run>
+                stop(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:ZoneMinder</serviceId>
+            <name>toggle</name>
+            <run>
+                local status = get_status()
+                if(status=="0") then
+                    start(lul_device)
+                else
+                    stop(lul_device)
+                end
+            </run>
+        </action>
+    </actionList>
+</implementation>

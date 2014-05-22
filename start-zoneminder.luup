@@ -1,1 +1,0 @@
-luup.inet.wget("http://[ip:port]/zm/index.php?view=none&action=state&runState=start", 60)
