@@ -1,5 +1,5 @@
 {
-   "DeviceType": "urn:schemas-upnp-org:device:ZoneMinder:1",
+   "DeviceType": "urn:schemas-upnp-org:device:HttpSwitch:1",
    "flashicon": "icons/iconVSwitch.png",
    "inScene": "1",
    "state_icons": [
@@ -7,13 +7,13 @@
       "iconVSwitch_100.png"
    ],
    "DisplayStatus": {
-      "Service": "urn:upnp-org:serviceId:ZoneMinder",
+      "Service": "urn:upnp-org:serviceId:HttpSwitch",
       "Variable": "status",
       "MinValue": "0",
       "MaxValue": "1"
    },
    "doc_url": {
-      "doc_page": "zone_minder"
+      "doc_page": "http_switch"
    },
    "Tabs": [
       {
@@ -55,8 +55,8 @@
             {
                "ControlType": "label",
                "Label": {
-                  "lang_tag": "url_prefix",
-                  "text": "url prefix (ex : http://localhost:12345/zm/) : "
+                  "lang_tag": "url_start",
+                  "text": "url used to start : "
                },
                "Display": {
                   "Top": 30,
@@ -68,11 +68,35 @@
             {
                "ControlType": "variable",
                "Display": {
-                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
-                  "Variable": "url_prefix",
+                  "Service": "urn:upnp-org:serviceId:HttpSwitch",
+                  "Variable": "url_start",
                   "Top": 60,
                   "Left": 50,
-                  "Width": 220,
+                  "Width": 75,
+                  "Height": 20
+               }
+            },
+            {
+               "ControlType": "label",
+               "Label": {
+                  "lang_tag": "url_stop",
+                  "text": "url used to stop : "
+               },
+               "Display": {
+                  "Top": 90,
+                  "Left": 50,
+                  "Width": 75,
+                  "Height": 20
+               }
+            },
+            {
+               "ControlType": "variable",
+               "Display": {
+                  "Service": "urn:upnp-org:serviceId:HttpSwitch",
+                  "Variable": "url_stop",
+                  "Top": 120,
+                  "Left": 50,
+                  "Width": 75,
                   "Height": 20
                }
             },
@@ -84,16 +108,16 @@
                   "text": "On"
                },
                "Display": {
-                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Service": "urn:upnp-org:serviceId:HttpSwitch",
                   "Variable": "status",
                   "Value": "1",
-                  "Top": 90,
+                  "Top": 150,
                   "Left": 145,
                   "Width": 75,
                   "Height": 20
                },
                "Command": {
-                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Service": "urn:upnp-org:serviceId:HttpSwitch",
                   "Action": "start",
                   "Parameters": [
                   ]
@@ -107,16 +131,16 @@
                   "text": "Off"
                },
                "Display": {
-                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Service": "urn:upnp-org:serviceId:HttpSwitch",
                   "Variable": "status",
                   "Value": "0",
-                  "Top": 90,
+                  "Top": 150,
                   "Left": 50,
                   "Width": 75,
                   "Height": 20
                },
                "Command": {
-                  "Service": "urn:upnp-org:serviceId:ZoneMinder",
+                  "Service": "urn:upnp-org:serviceId:HttpSwitch",
                   "Action": "stop",
                   "Parameters": [
                   ]
@@ -162,7 +186,7 @@
             "lang_tag": "a_device_is_turned_on_off",
             "text": "A device is turned on or off"
          },
-         "serviceId": "urn:upnp-org:serviceId:ZoneMinder",
+         "serviceId": "urn:upnp-org:serviceId:HttpSwitch",
          "argumentList": [
             {
                "id": 1,

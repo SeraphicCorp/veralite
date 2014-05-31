@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+    <specVersion>
+        <major>1</major>
+        <minor>0</minor>
+    </specVersion>
+    <device>
+        <deviceType>urn:schemas-upnp-org:device:HttpSwitch:1</deviceType>
+        <staticJson>D_HttpSwitch.json</staticJson>
+        <friendlyName>HttpSwitch</friendlyName>
+        <manufacturer>Seraphic Corp</manufacturer>
+        <manufacturerURL>
+        </manufacturerURL>
+        <modelDescription>HttpSwitch</modelDescription>
+        <modelName>HttpSwitch</modelName>
+        <modelNumber>1.0</modelNumber>
+        <protocol>cr</protocol>
+        <handleChildren>0</handleChildren>
+        <serviceList>
+            <service>
+                <serviceType>urn:schemas-upnp-org:service:HttpSwitch:1</serviceType>
+                <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+                <controlURL>/upnp/control/HttpSwitch</controlURL>
+                <eventSubURL>/upnp/event/HttpSwitch</eventSubURL>
+                <SCPDURL>S_HttpSwitch.xml</SCPDURL>
+            </service>
+        </serviceList>
+        <implementationList>
+            <implementationFile>I_HttpSwitch.xml</implementationFile>
+        </implementationList>
+    </device>
+</root>

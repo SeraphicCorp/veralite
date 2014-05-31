@@ -1,0 +1,14 @@
+HOW TO USE
+Add the json and xml files to your luup files.
+Create a device only filling Upnp Device Filename with D_HttpSwitch.xml
+Configure the device and in Advanced tab add the variables :
+    New service : urn:upnp-org:serviceId:HttpSwitch
+    New variable : url_start
+    New value : url used to start
+and
+    New service : urn:upnp-org:serviceId:HttpSwitch
+    New variable : url_start
+    New value : url used to start
+
+TODO
+Use URL to retrieve real status using RegEx

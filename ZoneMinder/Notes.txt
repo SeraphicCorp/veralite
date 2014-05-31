@@ -8,7 +8,6 @@ Configure the device and in Advanced tab add a variable :
 
 TODO
 Add a setter for URL prefix in widget
-Need to enhance widget
 Retrieve real status from ZoneMinder
 Add password authentication
 

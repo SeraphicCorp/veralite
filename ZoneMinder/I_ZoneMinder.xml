@@ -4,12 +4,12 @@
         function initialize(lul_device)
         end
         function get_status()
+            return luup.variable_get("urn:upnp-org:serviceId:ZoneMinder","status", lul_device)
+        end
+        function get_url_prefix(lul_device)
             return luup.variable_get("urn:upnp-org:serviceId:ZoneMinder","url_prefix", lul_device)
         end
-            function get_url_prefix(lul_device)
-            return luup.variable_get("urn:upnp-org:serviceId:ZoneMinder","url_prefix", lul_device)
-        end
-            function set_url_prefix(lul_device, value)
+        function set_url_prefix(lul_device, value)
             luup.variable_set("urn:upnp-org:serviceId:ZoneMinder", "url_prefix", value, lul_device)
         end
         function start(lul_device)

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<implementation>
+    <functions>
+        function initialize(lul_device)
+        end
+        function get_status()
+            return luup.variable_get("urn:upnp-org:serviceId:HttpSwitch","status", lul_device)
+        end
+        function get_url_start(lul_device)
+            return luup.variable_get("urn:upnp-org:serviceId:HttpSwitch","url_start", lul_device)
+        end
+        function set_url_start(lul_device, value)
+            luup.variable_set("urn:upnp-org:serviceId:HttpSwitch", "url_start", value, lul_device)
+        end
+        function get_url_stop(lul_device)
+            return luup.variable_get("urn:upnp-org:serviceId:HttpSwitch","url_stop", lul_device)
+        end
+        function set_url_stop(lul_device, value)
+            luup.variable_set("urn:upnp-org:serviceId:HttpSwitch", "url_stop", value, lul_device)
+        end
+        function start(lul_device)
+            local url_start = get_url_start()
+            luup.variable_set("urn:upnp-org:serviceId:HttpSwitch","status",1,lul_device)
+            luup.inet.wget(url_start, 60)
+        end
+        function stop(lul_device)
+            local url_stop = get_url_stop()
+            luup.variable_set("urn:upnp-org:serviceId:HttpSwitch","status",0,lul_device)
+            luup.inet.wget(url_stop, 60)
+        end
+    </functions>
+    <startup>initialize</startup>
+    <actionList>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+            <name>get_url_start</name>
+            <run>
+                get_url_start(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+            <name>set_url_start</name>
+            <run>
+                set_url_start(lul_device, lul_settings.url_prefix)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+            <name>get_status</name>
+            <run>
+                get_status(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+            <name>start</name>
+            <run>
+                start(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+            <name>stop</name>
+            <run>
+                stop(lul_device)
+            </run>
+        </action>
+        <action>
+            <serviceId>urn:upnp-org:serviceId:HttpSwitch</serviceId>
+            <name>toggle</name>
+            <run>
+                local status = get_status()
+                if(status=="0") then
+                    start(lul_device)
+                else
+                    stop(lul_device)
+                end
+            </run>
+        </action>
+    </actionList>
+</implementation>
